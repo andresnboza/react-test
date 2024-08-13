@@ -1,4 +1,3 @@
-// utils/auth.ts
 export const login = (username: string, password: string): Promise<boolean> => {
   return new Promise((resolve) => {
     setTimeout(() => {

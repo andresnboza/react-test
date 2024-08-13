@@ -1,3 +1,4 @@
+import { IProduct } from '../../interfaces/product.interface';
 import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
@@ -6,6 +7,23 @@ import {
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
 } from './product.constants';
+import { Dispatch } from 'redux';
+
+
+export const fetchProducts = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch({ type: FETCH_PRODUCTS_REQUEST });
+
+    try {
+      const response = await fetch('/api/products');
+      const data: IProduct[] = await response.json();
+      dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: data });
+    } catch (error: any) {
+      dispatch({ type: FETCH_PRODUCTS_FAILURE, error: error.message });
+    }
+  };
+};
+
 
 export const fetchProductsRequest = () => ({
   type: FETCH_PRODUCTS_REQUEST,

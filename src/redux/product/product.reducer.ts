@@ -1,3 +1,4 @@
+import { IProduct } from '../../interfaces/product.interface';
 import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
@@ -6,13 +7,6 @@ import {
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
 } from './product.constants';
-
-interface IProduct {
-  id: string; 
-  name: string;
-  sku: string;
-  ean: string;
-}
 
 interface ProductsState {
   loading: boolean;

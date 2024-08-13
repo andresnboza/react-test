@@ -11,9 +11,10 @@ import LoginPage from "./pages/Authentication/LoginPage";
 import RegistrationPage from "./pages/Authentication/RegistrationPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import ProductsPage from "./pages/Product/ProductsPage";
-import ProductDetailsPage from "./pages/Product/ProductDetailsPage";
+import ProductDetailsPage from "./components/Product/ProductDetails";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 import PrivateRoute from "./components/Routes/PrivateRoute";
+import ProductList from "./components/Product/ProductList";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
         >
           <Route index element={<Navigate to="products" />} />
           <Route path="products" element={<ProductsPage />}>
+            <Route index element={<Navigate to="list" />} />
+            <Route path="list" element={<ProductList />} />
             <Route path=":id" element={<ProductDetailsPage />} />
           </Route>
         </Route>
