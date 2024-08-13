@@ -10,6 +10,8 @@ import {
   fetchProductsFailure,
 } from "../../redux/product/product.actions";
 import { fetchProducts } from "../../utils/mockApi";
+import { useState } from "react";
+import Modal from "../Others/Modal";
 
 const tableTopSection: React.CSSProperties = {
   display: "flex",
@@ -19,10 +21,19 @@ const tableTopSection: React.CSSProperties = {
   marginBottom: "20px",
 };
 
+const btn_section: React.CSSProperties = {
+  display: "flex",
+  flexDirection: "row",
+};
+
 const ProductList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: AppState) => state.products);
   const navigate = useNavigate();
+
+  // State for modal
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   const redirectToProductDetails = (id: string) => {
     navigate(`/home/products/${id}`);
@@ -40,20 +51,37 @@ const ProductList = () => {
     }
   };
 
+  const update = (product: IProduct) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedProduct(null);
+  };
+
   const allProducts = products.map((product: IProduct) => (
     <tr key={product.id}>
       <th scope="row">{product.id}</th>
       <td>{product.name}</td>
       <td>{product.sku}</td>
       <td>{product.ean}</td>
-      <td>
+      <div style={btn_section}>
         <Button
           label="See Product Details"
           onClick={() => redirectToProductDetails(product.id)}
           type={""}
           loadingState={false}
         />
-      </td>
+        <div style={{ width: "10px" }}></div>
+        <Button
+          label="Update"
+          onClick={() => update(product)}
+          type={"info"}
+          loadingState={false}
+        />
+      </div>
     </tr>
   ));
 
@@ -80,6 +108,13 @@ const ProductList = () => {
         </thead>
         <tbody>{allProducts}</tbody>
       </table>
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          product={selectedProduct}
+        />
+      )}
     </div>
   );
 };

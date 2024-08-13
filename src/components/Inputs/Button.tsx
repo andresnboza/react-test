@@ -12,6 +12,19 @@ const Button = (props: IButtonProps) => {
     onClick?.();
   };
 
+  if (type == "info") {
+    return (
+      <button
+        onClick={handleClick}
+        type="button"
+        disabled={loadingState}
+        className={`btn btn-${loadingState ? "secondary" : "info"} `}
+      >
+        {loadingState ? "Loading ..." : label}
+      </button>
+    );
+  }
+
   return (
     <button
       onClick={handleClick}
