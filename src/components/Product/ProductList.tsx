@@ -1,8 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { IProduct } from "../../interfaces/product.interface";
-import { AppState } from "../../redux/store";
+import { AppDispatch, AppState } from "../../redux/store";
 import Button from "../Inputs/Button";
+import { setSplashScreen } from "../../redux/general/general.actions";
+import {
+  fetchProductsRequest,
+  fetchProductsSuccess,
+  fetchProductsFailure,
+} from "../../redux/product/product.actions";
+import { fetchProducts } from "../../utils/mockApi";
 
 const tableTopSection: React.CSSProperties = {
   display: "flex",
@@ -13,15 +20,24 @@ const tableTopSection: React.CSSProperties = {
 };
 
 const ProductList = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: AppState) => state.products);
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    console.log("Show more products");
-  };
-
   const redirectToProductDetails = (id: string) => {
     navigate(`/home/products/${id}`);
+  };
+
+  const fetchSomeProducts = async () => {
+    dispatch(fetchProductsRequest());
+    try {
+      // Replace with your API call
+      const response = await fetchProducts(products.length + 5);
+      dispatch(fetchProductsSuccess(response));
+      dispatch(setSplashScreen(false));
+    } catch (error) {
+      dispatch(fetchProductsFailure("Failed to fetch products"));
+    }
   };
 
   const allProducts = products.map((product: IProduct) => (
@@ -46,7 +62,7 @@ const ProductList = () => {
       <div style={tableTopSection}>
         <h1>Products</h1>
         <Button
-          onClick={handleClick}
+          onClick={() => fetchSomeProducts()}
           label="Show More"
           type="" // Ensure this is correct or remove if not needed
           loadingState={false}

@@ -7,7 +7,7 @@ const topNavigation: React.CSSProperties = {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
-  width: "100%"
+  width: "100%",
 };
 
 const ProductDetails = () => {
@@ -24,16 +24,26 @@ const ProductDetails = () => {
   const products = useSelector((state: AppState) => state.products.products);
 
   // Find the product with the matching ID
-  const product = products.find((p) => p.id === id);
+  const product = products.find((p) => p.id == id);
 
   if (!product) {
-    return <div>Product not found</div>;
+    return (
+      <div style={topNavigation}>
+        <div>Product not found</div>
+        <Button
+          label="Back to Products"
+          onClick={backToProductList}
+          type={""}
+          loadingState={false}
+        />
+      </div>
+    );
   }
 
   return (
     <div className="product-details">
       <div style={topNavigation}>
-        <h1>Product Details 234</h1>
+        <h1>Product Details</h1>
         <Button
           label="Back to Products"
           onClick={backToProductList}
