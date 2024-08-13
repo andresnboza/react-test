@@ -6,11 +6,12 @@ const topDashboardMenu = {
   height: "60px",
   borderBottom: "1px solid #e0e0e0",
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-  backgroundColor: "#fff",
+  backgroundColor: "trasparent",
 };
 
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/auth";
+import ThemeToggle from "../Others/ThemeToggle";
 
 const TopMenu = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const TopMenu = () => {
     <div style={topDashboardMenu}>
       <h3>React Test</h3>
       <div>
+        <ThemeToggle />
         <button onClick={handleLogout} className="btn btn-danger">
           Logout
         </button>
