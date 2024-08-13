@@ -67,21 +67,23 @@ const ProductList = () => {
       <td>{product.name}</td>
       <td>{product.sku}</td>
       <td>{product.ean}</td>
-      <div style={btn_section}>
-        <Button
-          label="See Product Details"
-          onClick={() => redirectToProductDetails(product.id)}
-          type={""}
-          loadingState={false}
-        />
-        <div style={{ width: "10px" }}></div>
-        <Button
-          label="Update"
-          onClick={() => update(product)}
-          type={"info"}
-          loadingState={false}
-        />
-      </div>
+      <td>
+        <div style={btn_section}>
+          <Button
+            label="See Product Details"
+            onClick={() => redirectToProductDetails(product.id)}
+            type={""}
+            loadingState={false}
+          />
+          <div style={{ width: "10px" }}></div>
+          <Button
+            label="Update"
+            onClick={() => update(product)}
+            type={"info"}
+            loadingState={false}
+          />
+        </div>
+      </td>
     </tr>
   ));
 
