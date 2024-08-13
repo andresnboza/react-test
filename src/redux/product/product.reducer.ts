@@ -33,7 +33,7 @@ const productsReducer = (state = initialState, action: any): ProductsState => {
       return {
         ...state,
         loading: false,
-        products: action.payload,
+        products: [...action.payload],
       };
     case FETCH_PRODUCTS_FAILURE:
       return {

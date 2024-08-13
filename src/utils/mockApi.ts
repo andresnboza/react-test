@@ -19,6 +19,13 @@ export const generateProducts = (amount: number): any[] => {
   return products;
 };
 
+// To update the product I'm going to work locally 
+export const updateProduct = (products: IProduct[], updatedProduct: IProduct): IProduct[] => {
+  const index = products.findIndex((product) => product.id == updatedProduct.id);
+  products[index] = updatedProduct;
+  return products;
+};
+
 export const fetchProducts = (amount: number): Promise<any[]> => {
 
   // const products = generateProducts(amount);
