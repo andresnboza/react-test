@@ -5,6 +5,9 @@ import UsernameInput from "../Inputs/UsernameInput";
 import Toast from "../Toast";
 import { register } from "../../utils/auth";
 import TextInput from "../Inputs/TextInput";
+import { useTheme } from "../../contexts/ThemeContext";
+import "../../App.css";
+
 
 type IProps = {
   onSubmit: () => void;
@@ -20,6 +23,8 @@ const RegisterForm = (props: IProps) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { theme } = useTheme();
 
   const handleSubmit = () => {
     // This is only for test purpose but the validation should be different for production
@@ -69,12 +74,14 @@ const RegisterForm = (props: IProps) => {
           loadingState={loading}
           onChange={(value) => setFirstName(value)}
           placeholder={"Enter your First Name ..."}
+          theme={theme}
         />
         <TextInput
           label="Last Name"
           loadingState={loading}
           onChange={(value) => setLastName(value)}
           placeholder={"Enter your Last Name ..."}
+          theme={theme}
         />
         <Button
           type="submit"
