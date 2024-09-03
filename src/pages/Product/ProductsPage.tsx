@@ -12,7 +12,7 @@ const tableTopSection: React.CSSProperties = {
 
 const ProductsPage = () => {
   return (
-    <div style={tableTopSection}>
+    <div style={tableTopSection} className="full-page">
       <div style={{flexGrow: "1"}}>
         <Outlet />
       </div>

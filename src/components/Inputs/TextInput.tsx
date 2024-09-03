@@ -4,10 +4,13 @@ type ITextInput = {
   label: string;
   loadingState: boolean;
   value?: string;
+  theme: 'light' | 'dark'; // Add this line
 };
 
+import "../../App.css";
+
 const TextInput = (props: ITextInput) => {
-  const { onChange, placeholder, label, loadingState, value } = props;
+  const { onChange, placeholder, label, loadingState, value, theme } = props;
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -15,13 +18,13 @@ const TextInput = (props: ITextInput) => {
   };
 
   return (
-    <div className="input-group mb-3 p-0">
-      <span className="input-group-text" id="basic-addon1">
+    <div className={`input-group mb-3 p-0 ${theme}-theme`}>
+      <span className={`input-group-text ${theme}-theme`} id="basic-addon1">
         {label}
       </span>
       <input
         type="text"
-        className="form-control"
+        className={`form-control ${theme}-theme`}
         value={value}
         placeholder={placeholder}
         aria-label={label}

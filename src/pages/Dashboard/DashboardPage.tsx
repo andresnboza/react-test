@@ -7,12 +7,12 @@ const DashboardStyles = {
 
 const DashboardPage = () => {
   return (
-    <>
+    <div className="full-page">
       <TopMenu />
       <div style={DashboardStyles}>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 };
 

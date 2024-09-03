@@ -38,7 +38,7 @@ function App() {
       {splashScreenStatus ? (
         <SplashScreenPage />
       ) : (
-        <div className={`app ${theme === 'dark' ? 'dark-theme' : ''}`}>
+        <div className={`full-page app ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
           <Routes>
             <Route path="/" element={<Navigate to="/auth" replace />} />
             <Route path="/auth" element={<AuthenticationPage />}>

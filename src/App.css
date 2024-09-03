@@ -1,13 +1,100 @@
-/* Default Light Theme */
-body {
-  background-color: #ffffff;
-  color: #000000;
+/* App.css */
+
+.app {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html {
   height: 100vh;
 }
 
-/* Dark Theme */
-body .dark-theme {
-  background-color: #000000 !important;
-  color: #ffffff;
+body {
   height: 100vh;
+}
+
+.full-page {
+  height: 100%;
+}
+
+/* FOR LIGHT*/
+
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.table.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.table-row.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.light-theme html.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.modal-overlay.light-theme {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+/* FOR DARK*/
+
+.dark-theme {
+  background-color: rgb(39, 39, 39);
+  color: #ffffff;
+}
+
+.table.dark-theme {
+  background-color: rgb(39, 39, 39);
+  color: #ffffff;
+}
+
+.table-row.dark-theme {
+  background-color: rgb(39, 39, 39);
+  color: #ffffff;
+}
+
+body.dark-theme html.dark-theme {
+  background-color: rgb(39, 39, 39);
+  color: #ffffff;
+}
+
+modal-overlay.dark-theme {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* REGARDING INPUTS */
+.input-group-text.light-theme {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.input-group-text.dark-theme {
+  background-color: #555555;
+  color: #ffffff;
+}
+
+.form-control.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.form-control.dark-theme {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+.light-theme .modal-close {
+  color: #000000; /* Dark color for light theme */
 }

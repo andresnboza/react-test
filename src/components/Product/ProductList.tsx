@@ -12,6 +12,8 @@ import {
 import { fetchProducts } from "../../utils/mockApi";
 import { useState } from "react";
 import Modal from "../Others/Modal";
+import { useTheme } from "../../contexts/ThemeContext";
+import "../../App.css";
 
 const tableTopSection: React.CSSProperties = {
   display: "flex",
@@ -27,6 +29,9 @@ const btn_section: React.CSSProperties = {
 };
 
 const ProductList = () => {
+
+  const { theme } = useTheme();
+
   const dispatch = useDispatch<AppDispatch>();
   const { products } = useSelector((state: AppState) => state.products);
   const navigate = useNavigate();
@@ -62,12 +67,12 @@ const ProductList = () => {
   };
 
   const allProducts = products.map((product: IProduct) => (
-    <tr key={product.id}>
-      <th scope="row">{product.id}</th>
-      <td>{product.name}</td>
-      <td>{product.sku}</td>
-      <td>{product.ean}</td>
-      <td>
+    <tr key={product.id} >
+      <th scope="row" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>{product.id}</th>
+      <td className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>{product.name}</td>
+      <td className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>{product.sku}</td>
+      <td className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>{product.ean}</td>
+      <td className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
         <div style={btn_section}>
           <Button
             label="See Product Details"
@@ -98,14 +103,14 @@ const ProductList = () => {
           loadingState={false}
         />
       </div>
-      <table className="table">
+      <table className={`table ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">SKU</th>
-            <th scope="col">EAN</th>
-            <th scope="col">Actions</th>
+            <th scope="col" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>#</th>
+            <th scope="col" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>Name</th>
+            <th scope="col" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>SKU</th>
+            <th scope="col" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>EAN</th>
+            <th scope="col" className={`table-row ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>Actions</th>
           </tr>
         </thead>
         <tbody>{allProducts}</tbody>

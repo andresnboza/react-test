@@ -6,6 +6,8 @@ import Button from "../Inputs/Button";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { updateProduct } from "../../redux/product/product.actions";
+import { useTheme } from "../../contexts/ThemeContext";
+import "../../App.css";
 
 interface ModalProps {
   isOpen: boolean;
@@ -24,6 +26,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
   const [ean, setEAN] = useState(product?.ean);
   const [id, _] = useState(product?.id);
 
+  const { theme } = useTheme();
+
   const handleClick = () => {
     const updatedProduct = {
       id: product?.id,
@@ -37,9 +41,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
+    <div className={`modal-overlay ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
+      <div className={`modal-content ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`}>
+        <button className={`modal-close ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`} onClick={onClose}>
           ×
         </button>
         {product && (
@@ -51,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
               label={"Id"}
               value={id}
               loadingState={true}
+              theme={theme}
             />
             <TextInput
               onChange={(value) => setName(value)}
@@ -58,6 +63,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
               label={"Name"}
               value={name}
               loadingState={false}
+              theme={theme}
             />
             <TextInput
               onChange={(value) => setSKU(value)}
@@ -65,6 +71,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
               label={"SKU"}
               value={sku}
               loadingState={false}
+              theme={theme}
             />
             <TextInput
               onChange={(value) => setEAN(value)}
@@ -72,6 +79,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
               label={"EAN"}
               value={ean}
               loadingState={false}
+              theme={theme}
             />
             <Button label={"Update"} type={""} loadingState={false} onClick={handleClick}/>
           </div>
