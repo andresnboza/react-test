@@ -5,9 +5,7 @@ const DashboardStyles = {
   padding: "20px",
 }
 
-type Props = {};
-
-const DashboardPage = (props: Props) => {
+const DashboardPage = () => {
   return (
     <>
       <TopMenu />

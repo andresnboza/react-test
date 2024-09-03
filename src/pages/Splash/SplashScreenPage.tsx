@@ -10,9 +10,7 @@ import { fetchProducts } from "../../utils/mockApi";
 import { setSplashScreen } from "../../redux/general/general.actions";
 import "../../index.css";
 
-type Props = {};
-
-const SplashScreenPage = (props: Props) => {
+const SplashScreenPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { loading, products, error } = useSelector(
     (state: AppState) => state.products

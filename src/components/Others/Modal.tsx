@@ -3,9 +3,9 @@ import "../../index.css";
 import { IProduct } from "../../interfaces/product.interface";
 import TextInput from "../Inputs/TextInput";
 import Button from "../Inputs/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppState } from "../../redux/store";
-import { fetchProductsSuccess, updateProduct } from "../../redux/product/product.actions";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { updateProduct } from "../../redux/product/product.actions";
 
 interface ModalProps {
   isOpen: boolean;
@@ -16,14 +16,13 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
   const dispatch = useDispatch<AppDispatch>();
   // Using selectors to get all the products
-  const products = useSelector((state: AppState) => state.products.products);
 
   if (!isOpen) return null;
 
   const [name, setName] = useState(product?.name);
   const [sku, setSKU] = useState(product?.sku);
   const [ean, setEAN] = useState(product?.ean);
-  const [id, setId] = useState(product?.id);
+  const [id, _] = useState(product?.id);
 
   const handleClick = () => {
     const updatedProduct = {
@@ -47,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, product }) => {
           <div>
             <h2>Update Product</h2>
             <TextInput
-              onChange={(value) => {}}
+              onChange={() => {}}
               placeholder={""}
               label={"Id"}
               value={id}
